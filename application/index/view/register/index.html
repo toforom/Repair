@@ -1,0 +1,78 @@
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="__STATIC__/admin/css/font.css">
+	<link rel="stylesheet" href="__STATIC__/admin/css/xadmin.css">
+    <script type="text/javascript" src="__STATIC__/admin/js/jquery.min.js"></script>
+    <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/xadmin.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/cookie.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/md5.js"></script>
+<style>
+    #dd{
+        width: 120px;
+        height: 70px;
+    }
+</style>
+</head>
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">注册</div>
+        <div id="darkbannerwrap"></div>
+        
+        <form  class="layui-form" >
+            <input name="sno" id="sno" placeholder="学号"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="tname" id="tname" lay-verify="required" placeholder="姓名"  type="text" class="layui-input">
+            <hr class="hr15">
+            <input name="password" id="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <input name="rpassword" id="rpassword" onblur="validate()" lay-verify="required" placeholder="确认密码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <input name="room" id="room" lay-verify="required" placeholder="寝室号"  type="password" class="layui-input">
+            <hr class="hr15">
+
+            <input value="注册" id="button" lay-submit lay-filter="login" style="width:100%;" type="button">
+            <hr class="hr20" >
+        </form>
+    </div>
+
+</body>
+
+<script>
+    function validate () {
+        if ($('#password').val() != $('#rpassword').val())
+        {
+            layer.msg('两次输入密码不一致')
+            $('#password').value = ''
+            $('#rpassword').value = ''
+        }
+    }
+    $('#button').click(function () {
+        var student_sno = $('#sno').val()
+        var student_name = $('#tname').val()
+        var student_password = hex_md5($('#password').val())
+        var student_room   = $('#room').val()
+        $.post('{:url("register/check")}',{student_sno,student_name,student_password,student_room,student_status : 1},function (data) {
+            if (data.status == 1)
+            {
+                layer.msg(data.data)
+                window.location.href='{:url("index/index/index")}'
+            }else
+            {
+                layer.msg(data.data)
+            }
+            }
+        )
+    })
+
+
+</script>
+</html>

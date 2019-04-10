@@ -1,0 +1,70 @@
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录-X-admin2.1</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=1, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="__STATIC__/admin/css/font.css">
+	<link rel="stylesheet" href="__STATIC__/admin/css/xadmin.css">
+    <script type="text/javascript" src="__STATIC__/admin/js/jquery.min.js"></script>
+    <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/xadmin.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/cookie.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/md5.js"></script>
+
+<style>
+
+#registter a{
+    float: right;
+    font-size: 15px;
+    color:rgb(24,159,146);
+}
+
+
+</style>
+</head>
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">登录</div>
+        <div id="darkbannerwrap"></div>
+        
+        <form  class="layui-form" >
+            <input name="username" id="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="password" id="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <input name="verify" id="verify" lay-verify="required" placeholder="验证码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <img id="dd" style="margin: " src="/captcha" onclick="this.src='/captcha'" alt="验证码" title="点击直接刷新" >
+            <hr class="hr20" >
+            <input value="登录" id="button" lay-submit lay-filter="login" style="width:100%;" type="button">
+            <hr class="hr20" >
+        </form>
+
+        <div id="registter"><a style="float: left" href="{:url('admin/login/login')}">后勤人员点此</a> <a href='{:url("register/index")}'>立即注册</a></div>
+    </div>
+
+
+    <script>
+        $('#button').click(function () {
+            var username = $('#username').val()
+            var password = hex_md5($('#password').val())
+            var verify   = $('#verify').val()
+             $.post('{:url("login/check")}',{username,password,verify},function (data) {
+                 if (data.status == 1) {
+                     alert(data.data)
+                     window.location.href = '{:url("index/index")}'
+                 } else {
+                     alert(data.data)
+                     window.location.href = `{:url("login/login")}`
+                 }
+             })})
+
+        
+    </script>
+</body>
+</html>

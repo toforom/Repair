@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://hq.haut.edu.cn/apporWeb/index -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="all" name="Robots">
+        
+<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+        <title>报修系统</title>
+        <link rel="icon" href="http://hq.haut.edu.cn/apporWeb/favicon.ico" type="image/x-icon">
+        <link href="__STATIC__/index/css/style.css" rel="stylesheet" media="all" type="text/css">
+		<script src="__STATIC__/index/js/jquery.js" type="text/javascript"></script>
+		
+    </head>
+    <body>
+        <div id="warp">
+            <div id="header">
+                <div id="header_inner">
+                    <div id="top_logo">
+						报修系统
+                    </div>
+                    <div id="top_nav">
+                        <a href="" >
+							报修首页
+                        </a>
+                        <a href='{:url("deliver/deliver")}'>
+							我要报修
+                        </a>
+                        <a href="">
+							我的报修
+                        </a>
+                    </div>
+                    <div class="top_login">
+                        <img src="__STATIC__/index/image/zx_09.jpg">
+		                <a id="user" style="display: none;height: 100%;float:left">{$Request.session.user_idd}</a>
+		                <a id="loginn" href='{:url("login/login")}'>登录</a>
+		                
+                    </div>
+                    <div style="clear:both;">
+                    </div>
+                </div>
+            </div>
+            <div id="container">
+
+
+
+	<div id="main">
+	  	<div id="content">
+	  		<form id="searchForm">
+		  		<div class="datafilter">
+		            <input type="text" placeholder="请输入关键字" name="keyWords">
+		            <button type="button" class="button" onclick="javascript:searchItems();">
+		                <span>查询</span>
+		            </button>
+		            <select id="submitTimeFrom" name="submitTimeFrom" style="width:125px;" onchange="javascript:searchItems();">
+		                <option value="">所有</option>
+		                <option value="2019-03-27">一个星期内</option>
+		                <option value="2019-03-03">一个月内</option>
+		            </select>
+		            <select name="status" style="width:110px;" onchange="javascript:searchItems();">
+		                <option value="">所有</option>
+		                <option value="10">等待维修</option>
+						<option value="20">已维修</option>
+						<option value="30">已完结</option>
+		            </select>
+		        </div>
+	        </form>
+	    	<div class="datalist" id="itemsBody"><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="阳台推拉门的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e368423f4f48">阳台推拉门的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 21:34:14</span><span class="status">已受理</span></div></div></div><div class="item_content">宿舍推拉门</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="小灯（进门、阳台或卫生间）的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e36079974f40">小灯（进门、阳台或卫生间）的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 21:25:44</span><span class="status">已受理</span></div></div></div><div class="item_content">白炽灯（进门、阳台或卫生间）不亮</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="电棒的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e35b4f4f4f38">电棒的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 21:20:05</span><span class="status">已受理</span></div></div></div><div class="item_content">有一个电棒坏了</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="拖把池的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e3595a194f30">拖把池的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 21:17:57</span><span class="status">已受理</span></div></div></div><div class="item_content">排水管</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="小灯（进门、阳台或卫生间）的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e35660704f28">小灯（进门、阳台或卫生间）的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 21:14:42</span><span class="status">已受理</span></div></div></div><div class="item_content">白炽灯（进门、阳台或卫生间）不亮，两个灯都坏了。</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="纱窗的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e3514d604f20">纱窗的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 21:09:10</span><span class="status">已受理</span></div></div></div><div class="item_content">纱窗</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="日光灯（大灯）的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e33675d14f18">日光灯（大灯）的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 20:39:50</span><span class="status">已受理</span></div></div></div><div class="item_content">日光灯坏了</div></div><div class="dataitem"><div class="item_header"><div class="header_icon waitingfor">+</div><div class="header_content"><h4><a title="水龙头的报修" href="http://hq.haut.edu.cn/apporWeb/appeal/info?id=4a4490c469bcb91f0169e3210e904f10">水龙头的报修</a></h4><div class="header_meta"><span class="date">2019-04-03 20:16:28</span><span class="status">已受理</span></div></div></div><div class="item_content">水龙头滴水</div></div></div>
+	    	<div class="page" id="pages"><span>【  每页显示  8  条，当前第  1  页，共  140296  条  】&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="javascript:void(0)" class="disable">首页</a><a href="javascript:void(0)" class="disable">上一页</a><a href="javascript:void(0)" class="active">下一页</a><a href="javascript:void(0)" class="active">尾页</a></div>
+	    </div>
+	</div>
+
+
+				<div id="sidebar">
+                	<div class="widget statistics" style="background-color: transparent;">
+
+
+
+ 
+ 
+
+<h3 style="background-color:#f38027">本年度统计</h3>
+
+<div class="statistics_group">
+	<div class="statistics_item total" style="margin-left:0px">
+		<a href="http://hq.haut.edu.cn/apporWeb/index" style="width: 85px;display: inline-block;">
+			<div class="s_item_title">
+				总量：5468
+			</div>
+		</a>
+	</div>
+	<div class="statistics_item notanswer">
+		<a href="http://hq.haut.edu.cn/apporWeb/index" style="width: 85px;display: inline-block;">
+			<div class="s_item_title">
+				待修：1347
+			</div>
+		</a>
+	</div>
+	<div class="statistics_item answered" style="margin-right:0px">
+		<a href="http://hq.haut.edu.cn/apporWeb/index" style="width: 85px;display: inline-block;">
+			<div class="s_item_title">
+				已修：4121
+			</div>
+		</a>
+	</div>
+</div></div>
+                	
+
+                	
+                	<div class="widget orSendType">
+                		<h3>报修事项</h3>
+                		<div class="type_item">
+                			<div class="type_num">1</div>
+                			<div class="type_ops">
+                				<h4>宿舍零星报修</h4>
+                				<a href="http://hq.haut.edu.cn/apporWeb/appeal/deliver" class="button">我  要  报  修</a>
+                			</div>
+                		</div>
+                		<div class="type_item" style="display:none">
+                			<div class="type_num">2</div>
+                			<div class="type_ops">
+                				<h4>网络故障报修</h4>
+                				<a onclick="javascript:alert($(this).attr(&#39;title&#39;));" class="button" title="服务项目主要为网络插口、网络运行。如需报修请拨打校网管中心85912032">我  要  报  修</a>
+                			</div>
+                		</div>
+                		<div class="type_item" style="display:none">
+                			<div class="type_num">3</div>
+                			<div class="type_ops">
+                				<h4>净水和饮水机报修</h4>
+                				<a onclick="javascript:alert($(this).attr(&#39;title&#39;));" class="button" title="饮水机直接拿到南区水厂维修。如需咨询请拨打净水厂电话85327836、85329275">我  要  报  修</a>
+                			</div>
+                		</div>
+                		<div class="type_item" style="display:none">
+                			<div class="type_num">4</div>
+                			<div class="type_ops">
+                				<h4>空调,热水器报修</h4>
+                				<a onclick="javascript:alert($(this).attr(&#39;title&#39;));" class="button" title="空调问题维修请拨打以下电话：
+">我  要  报  修</a>
+                			</div>
+                		</div>
+                		<div class="type_item" style="display:none">
+                			<div class="type_num">5</div>
+                			<div class="type_ops">
+                				<h4>保险箱报修</h4>
+                				<a onclick="javascript:alert($(this).attr(&#39;title&#39;));" class="button" title="请拨打电话13771182622蔡">我  要  报  修</a>
+                			</div>
+                		</div>
+                		<div class="type_item" style="display:none">
+                			<div class="type_num">6</div>
+                			<div class="type_ops">
+                				<h4>宿舍洗衣房报修</h4>
+                				<a onclick="javascript:alert($(this).attr(&#39;title&#39;));" class="button" title="自助洗衣房洗衣机故障，请拨打电话13506173093
+免费洗衣房（每月为住宿学生提供免费清洗床上用品一次），请拨打电话85329296">我  要  报  修</a>
+                			</div>
+                		</div>
+                		<div class="type_item" style="display:none">
+                			<div class="type_num">7</div>
+                			<div class="type_ops">
+                				<h4>售电报修</h4>
+                				<a onclick="javascript:alert($(this).attr(&#39;title&#39;));" class="button" title="免费电和售电故障处理，请拨打电话85910622">我  要  报  修</a>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="widget notice">
+                		<h3>公告</h3>
+                		<p>
+                			欢迎广大师生积极使用后勤集团网上报修。
+                		</p>
+                		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                		&nbsp;&nbsp;&nbsp;</p>
+                	</div>
+                	<div class="widget alarm">
+                		<h3>报修电话</h3>
+                		<p>
+                			请拨打报修电话：67756000
+                		</p>
+                	</div>
+                	<div class="widget">
+                		<h3>报修须知</h3>
+                		<div style="padding:0px 10px 40px 10px;">
+                			<p>一、为了保障您的维修能正常进行，请您在报修时填写真实的资料，以便我们和您联系。</p>
+                			<p>二、报修时如果为多个项目，请分别填写报修件，方便我们对维修进行合理的安排。</p>
+							<p>三、收到您的信息后我们的工作人员会根据具体情况及时安排维修，并以最快的速度帮您解决问题，希望您填写信息时务必保证信息的准确性，以便提高工作效率，感谢支持。</p>
+                        </div>
+                	</div>
+                </div>
+                <div style="clear:both;">
+                </div>
+				<script type="text/javascript">
+					window.onload = function () {
+                        if (`{$Request.session.user_idd}`)
+                        {
+                            document.querySelector('#user').style.display="block"
+                            document.querySelector('#loginn').style.display="none"
+
+                        }
+                    }
+				</script>
+</body>
+</html>

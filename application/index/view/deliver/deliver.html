@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta content="all" name="Robots">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>sctu</title>
+	<link rel="icon" href="http://hq.haut.edu.cn/apporWeb/favicon.ico" type="image/x-icon">
+	<link href="__STATIC__/index/css/style.css" rel="stylesheet" media="all" type="text/css">
+	<script src="__STATIC__/index/js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		function set_memu(index) {
+			$("#top_nav a").removeClass("current");
+			$("#top_nav a").eq(index).addClass("current");
+		}
+		function redirect() {
+			window.location.href = `{:url("index/index")}`
+		}
+        window.onload = function () {
+            if (`{$Request.session.user_idd}`)
+            {
+                document.querySelector('#user').style.display="block"
+                document.querySelector('#loginn').style.display="none"
+
+            }
+        }
+	</script>
+</head>
+
+<body>
+	<div id="warp">
+		<div id="header">
+			<div id="header_inner">
+				<div id="top_logo">
+					报修系统
+				</div>
+				<div id="top_nav">
+					<!--<a id="aaa" onclick="redirect()" >-->
+					<a href='{:url("index/index")}'>
+						报修首页
+					</a>
+					<a href='{:url("deliver/deliver")}'>
+						我要报修
+					</a>
+					<a href="">
+						我的报修
+					</a>
+				</div>
+				<div class="top_login">
+					<img src="__STATIC__/index/image/zx_09.jpg">
+
+					<a id="user" style="display: none;height: 100%;float:left">{$Request.session.user_idd}</a>
+
+
+
+				</div>
+				<div style="clear:both;">
+				</div>
+			</div>
+		</div>
+		<div id="container">
+
+
+
+
+			<div id="main">
+				<div class="site_nav">
+					<div class="tit_box">
+						<span>
+							当前位置：首页 &gt;&gt; 我要报修
+						</span>
+					</div>
+				</div>
+				<div id="content">
+					<form id="deliverForm">
+						<div class="field_wrap">
+							<table class="field_table" width="98%" cellpadding="0" cellspacing="0">
+								<tbody>
+									<tr>
+										<td class="table_th" colspan="2">
+											填写报修
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="field">
+												<label>姓名</label>
+												<input value="{$Request.session.user_idd}" readonly="readonly"
+													type="text" style="width:225px">
+											</div>
+										</td>
+										<td>
+											<div class="field">
+												<label>联系方式<span class="required">请填写您的正确联系方式</span></label>
+												<input name="submitterTel" id="submitterTel" value="" type="text"
+													style="width:225px">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="field">
+												<label>所属区域<span class="required">必填</span></label>
+												<select name="areaId" id="areaId">
+													<option value="">--请选择区域--</option>
+													<option>清雅居1栋</option>
+													<option>清雅居2栋</option>
+													<option>龙华苑1栋</option>
+													<option>龙华苑2栋</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div class="field">
+												<label>维修地点<span class="required">必填，（示例：2528）</span></label>
+												<textarea name="address" id="address"
+													style="width:642px;height:60px;margin:0px;min-height: 60px;"></textarea>
+											</div>
+										</td>
+									</tr>
+									<tr>
+
+										<td colspan="2">
+											<div class="field">
+												<label>维修事项<span class="required">必填</span></label>
+												<select name="repairTypeGroupId" id="repairTypeGroupId"
+													style="display:inline-block;">
+													<option value="">--请选择--</option>
+													<option>电工类</option>
+													<option>水工类</option>
+													<option>木工类</option>
+													<option>锁类</option>
+													<option>土建类</option>
+													<option>电梯、中央空调</option>
+													<option>通讯类</option>
+												</select>
+												<select name="typeId" id="typeId" style="display:inline-block;">
+													<option value="">--请选择--</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div class="field">
+												<label>是否可以公开<span class="required">必填</span></label>
+												<select name="isSubmitterOpen" id="isSubmitterOpen"
+													style="width:100px;">
+													<option value="1">是</option>
+													<option value="0">否</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div class="field">
+												<label>标题<span class="required">必填</span></label>
+												<input name="title" id="title" type="text" style="width:600px">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div class="field">
+												<label>内容<span
+														class="required">必填，温馨提示：如果维修不止一个项目，请分别填写报修件。（最多40个字）</span></label>
+												<textarea name="content" id="content"
+													style="width:642px;height:80px;margin:0px;min-height: 80px;"></textarea>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="field_ops">
+							<div class="field">
+								<input type="button" value="提  交" class="button" onclick="javascript:submitDeliver();">
+								<input type="reset" value="重  填" class="button" onclick="javascript:;">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+			<div id="sidebar">
+				<div class="widget statistics" style="background-color: transparent;">
+
+
+
+
+
+
+					<h3 style="background-color:#f38027">本年度统计</h3>
+
+					<div class="statistics_group">
+						<div class="statistics_item total" style="margin-left:0px">
+							<a href="" style="width: 85px;display: inline-block;">
+								<div class="s_item_title">
+									总量：5541
+								</div>
+							</a>
+						</div>
+						<div class="statistics_item notanswer">
+							<a href="" style="width: 85px;display: inline-block;">
+								<div class="s_item_title">
+									待修：1371
+								</div>
+							</a>
+						</div>
+						<div class="statistics_item answered" style="margin-right:0px">
+							<a href="" style="width: 85px;display: inline-block;">
+								<div class="s_item_title">
+									已修：4170
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<script type="text/javascript">
+
+					$(document).ready(function () {
+						$(".statistics").load("/apporWeb/appeal/with_or_statistics");
+					});
+
+				</script>
+
+				<div class="widget orSendType">
+					<h3>报修事项</h3>
+					<div class="type_item">
+						<div class="type_num">1</div>
+						<div class="type_ops">
+							<h4>宿舍零星报修</h4>
+							<a href="" class="button">我 要 报 修</a>
+						</div>
+					</div>
+					<div class="type_item" style="display:none">
+						<div class="type_num">2</div>
+						<div class="type_ops">
+							<h4>网络故障报修</h4>
+							<a onclick="javascript:;" class="button" title="服务项目主要为网络插口、网络运行。如需报修请拨打校网管中心85912032">我 要 报
+								修</a>
+						</div>
+					</div>
+					<div class="type_item" style="display:none">
+						<div class="type_num">3</div>
+						<div class="type_ops">
+							<h4>净水和饮水机报修</h4>
+							<a onclick="javascript:;" class="button"
+								title="饮水机直接拿到南区水厂维修。如需咨询请拨打净水厂电话85327836、85329275">我 要 报 修</a>
+						</div>
+					</div>
+					<div class="type_item" style="display:none">
+						<div class="type_num">4</div>
+						<div class="type_ops">
+							<h4>空调,热水器报修</h4>
+							<a onclick="javascript:;" class="button" title="空调">我 要 报 修</a>
+						</div>
+					</div>
+					<div class="type_item" style="display:none">
+						<div class="type_num">5</div>
+						<div class="type_ops">
+							<h4>保险箱报修</h4>
+							<a onclick="javascript:;" class="button" title="">我 要 报 修</a>
+						</div>
+					</div>
+					<div class="type_item" style="display:none">
+						<div class="type_num">6</div>
+						<div class="type_ops">
+							<h4>宿舍洗衣房报修</h4>
+							<a onclick="javascript:;" class="button" title="">我 要 报 修</a>
+						</div>
+					</div>
+					<div class="type_item" style="display:none">
+						<div class="type_num">7</div>
+						<div class="type_ops">
+							<h4>售电报修</h4>
+							<a onclick="javascript:;" class="button" title="">我 要 报 修</a>
+						</div>
+					</div>
+				</div>
+				<div class="widget notice">
+					<h3>公告</h3>
+					<p>
+						欢迎广大师生积极使用后勤集团网上报修。
+					</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;</p>
+				</div>
+				<div class="widget alarm">
+					<h3>报修电话</h3>
+					<p>
+						请拨打报修电话：6666666
+					</p>
+				</div>
+				<div class="widget">
+					<h3>报修须知</h3>
+					<div style="padding:0px 10px 40px 10px;">
+						<p>一、为了保障您的维修能正常进行，请您在报修时填写真实的资料，以便我们和您联系。</p>
+						<p>二、报修时如果为多个项目，请分别填写报修件，方便我们对维修进行合理的安排。</p>
+						<p>三、收到您的信息后我们的工作人员会根据具体情况及时安排维修，并以最快的速度帮您解决问题，希望您填写信息时务必保证信息的准确性，以便提高工作效率，感谢支持。</p>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;">
+			</div>
+		</div>
+		<div id="toolbar">
+			<div class="widget fl fast_channel">
+				<h3>快速通道</h3>
+				<div class="fast_channel_box">
+					<ul>
+						<li>
+							<a href="">
+								<img src="__STATIC__/index/image/icon_01.gif">
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="__STATIC__/index/image/icon_02.gif">
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="widget fr qa_feedback">
+				<h3>问题反馈</h3>
+				<p>您在使用过程中遇到问题了吗？</p>
+				<div>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<div class="field">
+										<label>
+											我的问题
+											<span class="required">必填</span>
+											<input type="button" onclick="submitDeliver()" value="提  交" class="button" style="background:#5C77BE">
+										</label>
+										<textarea style="width:234px;height:50px;"></textarea>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div style="clear:both">
+		</div>
+		<div id="footer">
+			<span>
+				Copyright 2014 servive.haut.edu.cn All Rights Reserved
+			</span>
+			<span>
+				服务电话：
+			</span>
+			<span>
+				联系地址：
+			</span>
+		</div>
+	</div>
+	<script type="text/javascript" src="__STATIC__/index/js/jquery.js"></script>
+	<script type="text/javascript" src="__STATIC__/index/js/jQuery.FillOptions.js"></script>
+
+</body>
+<script>
+	$('#repairTypeGroupId').change(function () {
+		var areaID = $('#repairTypeGroupId').val()
+		 if ($("#repairTypeGroupId").val() != "") {
+			$.ajax({
+				url: `{:url("deliver/getSelect")}`,
+				type: 'Post',
+				data: { areaID: areaID },
+				dataType: 'json',
+				success: function (data) {
+					var options = '<option value="">--请选择--</option>'
+					for (var i = 0; i < data.length; i++) {
+						options += "<option value=" + data[i].type + ">" + data[i].type + "</option>"
+					}
+					$('#typeId').html(options)
+				}
+			})
+		}
+	})
+	$(function(){
+		let selectNode = document.querySelector('#repairTypeGroupId')
+		let selectNodeSub = document.querySelector('#typeId')
+		selectNode.addEventListener('change',function(){
+			if(selectNode.selectedIndex==0){
+				selectNodeSub.innerHTML = ''
+			}
+		})
+	});
+    var hasSubmit = false;
+
+    function submitDeliver() {
+
+        if (hasSubmit) {
+            return;
+        }
+
+        hasSubmit = true;
+
+        var errorMessage = "";
+
+        if ($("#areaId").val() == "") {
+            errorMessage += "请选择区域!\n";
+        }
+
+        if ($("#address").val() == "") {
+            errorMessage += "请填写维修地点!\n";
+        }
+
+        if ($("#typeId").val() == "") {
+            errorMessage += "请选择维修事项!\n";
+        }
+
+        if ($("#title").val() == "") {
+            errorMessage += "请输入标题!\n";
+        }
+
+        if ($("#deliverForm #content").val() == "") {
+            errorMessage += "请输入内容!\n";
+        }
+
+        if (errorMessage != "") {
+            alert(errorMessage);
+            hasSubmit = false;
+            return;
+        }
+        if(errorMessage!=""){
+            alert(errorMessage);
+            hasSubmit = false;
+            return;
+        }
+
+        values = jQuery("#deliverForm").serializeArray();
+        var studentSno = new Object();
+        studentSno.name = "student_sno";
+        studentSno.value = `{$Request.session.user_id}`;
+
+        values.push(studentSno);
+
+        $.ajax({
+            url : '{:url("deliver/save")}',
+            dataType : "json",
+            type : "post",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data : values,
+            success : function(data) {
+                if (data) {
+                    $("#deliverForm")[0].reset();
+                    alert("提交成功！");
+                    window.location="{:url('index/index')}";
+                } else {
+                    alert(data.message);
+                }
+
+                hasSubmit = false;
+            },
+            error : function(){
+                alert("提交失败");
+                hasSubmit = false;
+            }
+        });
+    }
+
+
+
+</script>
+
+</html>
